@@ -1,0 +1,15 @@
+<%- include("head.partial.ejs") %>
+<main>
+  <h2><%= title %></h2>
+  <% if (messages.length === 0) { %>
+    <p>Brak wiadomości.</p>
+  <% } else { %>
+    <ul>
+      <% messages.forEach(function(msg, i) { %>
+        <li><%= i+1 %>. <%= msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+  <p><a href="/">Wróć na stronę główną</a></p>
+</main>
+<%- include("foot.partial.ejs") %>

@@ -1,0 +1,22 @@
+<%- include("head.partial.ejs") %>
+<main>
+  <h2><%= title %></h2>
+
+  <h3>Aktualne wiadomości:</h3>
+  <% if (messages.length === 0) { %>
+    <p>Brak wiadomości.</p>
+  <% } else { %>
+    <ul>
+      <% messages.forEach(function(msg, i) { %>
+        <li><%= i+1 %>. <%= msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+
+  <h3>Dodaj nową wiadomość:</h3>
+  <form method="POST" action="/messages">
+    <input type="text" name="message" placeholder="Twoja wiadomość" required />
+    <button type="submit">Dodaj</button>
+  </form>
+</main>
+<%- include("foot.partial.ejs") %>
