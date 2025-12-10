@@ -1,0 +1,26 @@
+<%- include("head.partial.ejs") %>
+<main>
+  <h2><%= title %></h2>
+
+  <h3>Aktualne elementy:</h3>
+  <% if (items.length === 0) { %>
+    <p>Brak elementów.</p>
+  <% } else { %>
+    <ul>
+      <% items.forEach(function(item) { %>
+        <li>
+          <%= item.text %>
+          <a href="/items/edit/<%= item.id %>">Edytuj</a>
+          <a href="/items/delete/<%= item.id %>" onclick="return confirm('Na pewno usunąć?')">Usuń</a>
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+
+  <h3>Dodaj nowy element:</h3>
+  <form method="POST" action="/items">
+    <input type="text" name="item" placeholder="Twój element" required />
+    <button type="submit">Dodaj</button>
+  </form>
+</main>
+<%- include("foot.partial.ejs") %>

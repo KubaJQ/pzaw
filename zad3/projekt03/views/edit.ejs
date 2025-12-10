@@ -1,0 +1,13 @@
+<%- include("head.partial.ejs") %>
+<main>
+  <h2><%= title %></h2>
+
+  <h3>Edytuj element:</h3>
+  <form method="POST" action="/items/edit/<%= item.id %>">
+    <input type="text" name="item" value="<%= item.text %>" required />
+    <button type="submit">Zapisz zmiany</button>
+  </form>
+
+  <p><a href="/">Anuluj</a></p>
+</main>
+<%- include("foot.partial.ejs") %>
