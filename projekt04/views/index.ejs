@@ -1,0 +1,36 @@
+<%- include('head.partial.ejs') %>
+<h2><%= title %></h2>
+<% if (currentUser) { %>
+  <section>
+    <h3>Dodaj nowy element</h3>
+    <form method="POST" action="/items">
+      <input type="text" name="text" placeholder="Tekst elementu" required>
+      <button type="submit">Dodaj</button>
+    </form>
+  </section>
+<% } else { %>
+  <p>Możesz dodawać elementy po zalogowaniu.</p>
+<% } %>
+<section>
+  <h3>Lista elementów</h3>
+  <% if (items.length === 0) { %>
+    <p>Brak elementów.</p>
+  <% } else { %>
+    <ul>
+      <% items.forEach(item => { %>
+        <li>
+          <strong><%= item.text %></strong> 
+          (wprowadził: <%= item.owner %>)
+          <% if (currentUser && (currentUser.role === 'admin' || currentUser.id === item.user_id)) { %>
+            <a href="/items/edit/<%= item.id %>">Edytuj</a>
+            <form method="POST" action="/items/delete/<%= item.id %>" style="display:inline;">
+              <button type="submit" onclick="return confirm('Na pewno chcesz usunąć?')">Usuń</button>
+            </form>
+          <% } %>
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+</section>
+<a href="/seed">Wypełnij dane testowe</a>
+<%- include('foot.partial.ejs') %>

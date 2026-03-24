@@ -1,0 +1,7 @@
+<%- include('head.partial.ejs') %>
+<h2><%= title %></h2>
+<form method="POST" action="/items/edit/<%= item.id %>">
+  <input type="text" name="text" value="<%= item.text %>" required>
+  <button type="submit">Zapisz</button>
+</form>
+<%- include('foot.partial.ejs') %>

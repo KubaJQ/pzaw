@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Projekt04</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/items">Wszystkie elementy</a>
+      <% if (!currentUser) { %>
+        <a href="/register">Rejestracja</a>
+        <a href="/login">Logowanie</a>
+      <% } else { %>
+        <span>Witaj, <strong><%= currentUser.username %></strong> (<%= currentUser.role %>)</span>
+        <a href="/logout">Wyloguj</a>
+      <% } %>
+    </nav>
+  </header>
+  <main>

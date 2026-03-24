@@ -1,0 +1,17 @@
+<%- include('head.partial.ejs') %>
+<h2><%= title %></h2>
+<% if (items.length === 0) { %>
+  <p>Brak elementów.</p>
+<% } else { %>
+  <ul>
+    <% items.forEach(item => { %>
+      <li>
+        <%= item.text %> (autor: <%= item.owner %>)
+        <% if (currentUser && (currentUser.role === 'admin' || currentUser.id === item.user_id)) { %>
+          <a href="/items/edit/<%= item.id %>">Edytuj</a>
+        <% } %>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
+<%- include('foot.partial.ejs') %>
